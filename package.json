@@ -1,17 +1,21 @@
 {
   "name": "file",
-   "version": "1.0.0",
-   "main": "index.js",
-   "scripts": {
-    "start": "node index.js"
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"node index.js\" \"node server.js\""
   },
-   "keywords": [],
-   "author": "",
-   "license": "ISC",
-   "description": "",
-   "dependencies": {
-     "wav": "^1.0.2",
-     "ws": "^8.18.0"
-   }
- }
- 
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "wav": "^1.0.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "express": "^4.21.2"
+  }
+}

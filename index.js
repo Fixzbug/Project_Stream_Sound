@@ -10,7 +10,6 @@
 //✅ ใช้ AGC ขยายเสียงก่อนส่ง.
 //✅ Server สามารถเอาชื่อ device ไปใช้ตั้งชื่อไฟล์ .wav ได้เลย.
 
-
 const dgram = require('dgram');  // ✅ ใช้สำหรับสร้าง UDP server
 const fs = require('fs');  // ✅ สำหรับอ่าน/เขียนไฟล์
 const path = require('path');  // ✅ สำหรับจัดการ path ไฟล์

@@ -16,6 +16,7 @@ const fs = require('fs');  // ✅ สำหรับอ่าน/เขียน
 const path = require('path');  // ✅ สำหรับจัดการ path ไฟล์
 const wav = require('wav');  // ✅ สำหรับเขียนไฟล์ .wav
 
+const PORT = 12345;
 const INACTIVITY_TIMEOUT = 3000;  // ✅ ถ้าไม่ได้รับข้อมูลจาก device ภายใน 3 วินาที ถือว่า stream จบ
 const AMPLIFY_GAIN = 8;  // ✅ ค่า gain สำหรับขยายเสียง 8 เท่า
 
@@ -62,8 +63,8 @@ audioServer.on('message', (msg, rinfo) => {
 });
 
 // ✅ เปิด UDP server ที่ port 12345
-audioServer.bind(12345, () => {
-  console.log(`UDP Server listening on port 12345`);
+audioServer.bind(PORT, () => {
+  console.log(`UDP Server listening on port :${PORT}`);
 });
 
 // ✅ เพิ่มงานบันทึกไฟล์เข้า queue

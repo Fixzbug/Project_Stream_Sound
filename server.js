@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 4000;
+const PORT = 45678;
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
 
 // ✅ ปิดแคชไฟล์เสียง
@@ -47,5 +47,5 @@ app.get('/', (req, res) => {
 
 // ✅ เริ่มเซิร์ฟเวอร์
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server is running at :${PORT}`);
 });

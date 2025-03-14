@@ -1,0 +1,17 @@
+{
+  "name": "file",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+    "start": "node index.js"
+  },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "description": "",
+   "dependencies": {
+     "wav": "^1.0.2",
+     "ws": "^8.18.0"
+   }
+ }
+ 

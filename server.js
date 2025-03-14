@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
     let fileListHtml = files
       .filter(file => file.endsWith('.wav')) // ✅ เอาเฉพาะไฟล์ .wav
-      .map(file => `<li><a href="/uploads/${file}" target="_blank">${file}</a> | <audio controls><source src="/uploads/${file}" type="audio/wav"></audio></li>`)
+      .map(file => `<li><a href="/uploads/${file}" target="_blank">${file}</a> <br> <audio controls><source src="/uploads/${file}" type="audio/wav"></audio></li>`)
       .join('');
 
     res.send(`

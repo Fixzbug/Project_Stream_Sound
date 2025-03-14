@@ -6,10 +6,18 @@ const app = express();
 const PORT = 4000;
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
 
-// ✅ ให้ Express เสิร์ฟไฟล์ในโฟลเดอร์ `uploads/`
-app.use('/uploads', express.static(UPLOADS_DIR));
+// ✅ ปิดแคชไฟล์เสียง
+app.use('/uploads', express.static(UPLOADS_DIR, {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.wav')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader('Expires', '0');
+      res.setHeader('Pragma', 'no-cache');
+    }
+  }
+}));
 
-// ✅ หน้าหลัก: แสดงรายการไฟล์เสียง
+// ✅ แสดงรายการไฟล์เสียง
 app.get('/', (req, res) => {
   fs.readdir(UPLOADS_DIR, (err, files) => {
     if (err) {
@@ -17,8 +25,17 @@ app.get('/', (req, res) => {
     }
 
     let fileListHtml = files
-      .filter(file => file.endsWith('.wav')) // ✅ เอาเฉพาะไฟล์ .wav
-      .map(file => `<li><a href="/uploads/${file}" target="_blank">${file}</a> <br><br><br> <audio controls><source src="/uploads/${file}" type="audio/wav"></audio></li>`)
+      .filter(file => file.endsWith('.wav')) 
+      .map(file => {
+        const timestamp = Date.now();
+        return `<li>
+                  <a href="/uploads/${file}?t=${timestamp}" target="_blank">${file}</a> 
+                  <br><br><br> 
+                  <audio controls>
+                    <source src="/uploads/${file}?t=${timestamp}" type="audio/wav">
+                  </audio>
+                </li>`;
+      })
       .join('');
 
     res.send(`
@@ -29,6 +46,4 @@ app.get('/', (req, res) => {
 });
 
 // ✅ เริ่มเซิร์ฟเวอร์
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+app.listen(PORT, ()
